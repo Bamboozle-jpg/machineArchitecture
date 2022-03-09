@@ -1,0 +1,15 @@
+li $s1, 0x10010000
+li $t4, -5
+sw $t4, 0x1001000c($0)
+addi $s0, $0, 3
+sll $s0, $s0, 2
+add $s1, $s1, $s0
+lw $t0, 0($s1)
+slt $t1, $0, $t0 #If t0 is greater than 0, t1 = 1
+bne $t1, $0, noFlip
+sub $t0, $0, $t0
+noFlip:
+add $s2, $s2, $t0
+li $v0, 1
+move $a0, $s2
+syscall
